@@ -1,4 +1,4 @@
-#notes-app-plain
+# notes-app-plain
 
 In this tutorial, we build a client (web server) and a resource server (API
 server). These two components will be used as the foundation for [part 2 of the
@@ -9,7 +9,7 @@ tutorial, `notes-app-gateway`](../notes-app-gateway).
 - [Run](#run)
 - [Tutorial](#tutorial)
 
-##Overview
+## Overview
 
 We need to build two components: the client and the resource server. When the
 client receives a request, it initiates a second request to the resource server
@@ -34,25 +34,25 @@ Notes
 - Buy sausages
 ```
 
-##Prerequisites
+## Prerequisites
 
 - Knowledge of the basics from the [LoopBack tutorial series](https://github.com/strongloop/loopback-example#tutorial-series)
 - Knowledge of [StrongLoop Process Manager (PM)](http://docs.strongloop.com/display/SLC/Using+Process+Manager)
 - Everything in the [setup section of the main README](https://github.com/strongloop/strong-gateway-demo#setup)
 
-##Run
+## Run
 
 ```
 ./start-demo
 ```
 
->PM is required to run the start-demo script.
+> PM is required to run the start-demo script.
 
-##Tutorial
+## Tutorial
 
-###Create the resource server
+### Create the resource server
 
-####1. Scaffold a new LoopBack application
+#### 1. Scaffold a new LoopBack application
 
 Create a new dir to store the project components:
 
@@ -70,9 +70,9 @@ slc loopback resource-server
 ... # follow the prompts
 ```
 
-####2. Create the `Note` model
+#### 2. Create the `Note` model
 
-#####Model info
+##### Model info
 
 - Name: `Note`
   - Data source: `db (memory)`
@@ -90,7 +90,7 @@ slc loopback:model Note
 ... # follow the prompts
 ```
 
-####3. Create a boot script to add sample data
+#### 3. Create a boot script to add sample data
 
 Run the following to add sample data to the [built-in memory db](http://docs.strongloop.com/display/LB/Memory+connector):
 
@@ -101,9 +101,9 @@ slc loopback:boot-script sample-data
 
 Create the sample data as shown in [`server/boot/sample-data`](resource-server/server/boot/sample-data.js#L2-L16).
 
-###Create the client
+### Create the client
 
-####1. Scaffold a new LoopBack application
+#### 1. Scaffold a new LoopBack application
 
 In the project root, create another project named `client`:
 
@@ -112,7 +112,7 @@ cd ..
 slc loopback client
 ```
 
-####2. Configure server-side templates
+#### 2. Configure server-side templates
 
 Create a [`views` dir in the `server` dir](client/server/views):
 
@@ -130,7 +130,7 @@ Then in `client/server/server.js`:
 when using `app.set('view engine', 'ejs')` because LoopBack is built on top of
 Express and EJS is included out of the box.
 
-####3. Set up the home page
+#### 3. Set up the home page
 
 Delete `root.js` in the [`boot` dir](client/server/boot):
 
@@ -140,7 +140,7 @@ rm client/server/boot/root.js
 
 Create [`notes.ejs`](client/server/views/notes.ejs) in the [`views` dir](client/server/views).
 
-####4. Configure the `/` route
+#### 4. Configure the `/` route
 
 Add `request` as a dependency:
 
@@ -164,12 +164,12 @@ In the [`routes` boot script](client/server/boot/routes.js):
 Create [a view to display errors](client/server/views/error.ejs) and [a view to
 display the notes](client/server/views/notes.ejs).
 
-####5. Change the default port from 3000 to 2001
+#### 5. Change the default port from 3000 to 2001
 
 Change the [port in `server/config.json`](client/server/config.json#L4)
 from 3000 to 2001.
 
-##Try it out
+## Try it out
 
 Go to the project root and start the resource server using PM:
 
@@ -191,7 +191,7 @@ server. Notice the [three notes created in the sample-data boot script](resource
 are now being rendered by the client. Shut down the all the servers once you've
 confirmed everything is working properly.
 
->You can run the included [`start-demo`](start-demo) script from the project
+> You can run the included [`start-demo`](start-demo) script from the project
 root to automatically perform the steps above.
 
 That concludes part 1 of the tutorial, [proceed to part 2 of the tutorial](../notes-app-gateway).
